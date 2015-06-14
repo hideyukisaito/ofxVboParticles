@@ -8,6 +8,7 @@ void ofApp::setup(){
     
     // ofxVboParticles([max particle number], [particle size]);
     vboPartciles = new ofxVboParticles(10000, 1000);
+    vboPartciles->loadTexture("textures/rad.jpg");
 
     // set friction (0.0 - 1.0);
     vboPartciles->friction = 0.005;
@@ -20,9 +21,10 @@ void ofApp::update(){
         ofVec3f velocity = ofVec3f(ofRandom(-2, 2), ofRandom(-2, 2), ofRandom(-2, 2));
         ofColor color;
         color.setHsb(ofRandom(255), 63, 200);
+        ofVec3f normal = ofVec3f(1.0, 0.01, 0);
         
         // add a particle
-        vboPartciles->addParticle(position, velocity, color);
+        vboPartciles->addParticle(position, velocity, color, normal);
     }
 
     vboPartciles->update();
@@ -32,6 +34,7 @@ void ofApp::update(){
 void ofApp::draw(){
     cam.begin();
     ofRotate(ofGetElapsedTimef() * 20, 1, 1, 0);
+    ofTranslate(-ofGetWidth() * 0.5, -ofGetHeight() * 0.5);
 
     // draw particles
     vboPartciles->draw();
