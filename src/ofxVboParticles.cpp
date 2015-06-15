@@ -18,7 +18,7 @@ ofxVboParticles::ofxVboParticles(int _maxParticles, float _pointSize){
     
     static GLfloat distance[] = { 0.0, 0.0, 1.0 };
     glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, distance);
-    glPointSize(pointSize);
+//    glPointSize(pointSize);
     
     billboards.setUsage(GL_DYNAMIC_DRAW);
     billboards.setMode(OF_PRIMITIVE_POINTS);
@@ -55,6 +55,8 @@ void ofxVboParticles::draw(){
     
     if (texture.isAllocated() && pointSpriteShader.isLoaded()) {
         pointSpriteShader.begin();
+        GLint loc = pointSpriteShader.getAttributeLocation("size");
+        pointSpriteShader.setAttribute1f(loc, pointSize);
         pointSpriteShader.setUniformTexture("tex", texture, 0);
         billboards.draw();
         pointSpriteShader.end();

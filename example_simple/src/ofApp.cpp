@@ -21,7 +21,7 @@ void ofApp::update(){
         ofVec3f velocity = ofVec3f(ofRandom(-2, 2), ofRandom(-2, 2), ofRandom(-2, 2));
         ofColor color;
         color.setHsb(ofRandom(255), 63, 200);
-        ofVec3f normal = ofVec3f(1.0, 0.01, 0);
+        ofVec3f normal = ofVec3f(1.0, 0.005, 0);
         
         // add a particle
         vboPartciles->addParticle(position, velocity, color, normal);
@@ -34,7 +34,6 @@ void ofApp::update(){
 void ofApp::draw(){
     cam.begin();
     ofRotate(ofGetElapsedTimef() * 20, 1, 1, 0);
-    ofTranslate(-ofGetWidth() * 0.5, -ofGetHeight() * 0.5);
 
     // draw particles
     vboPartciles->draw();

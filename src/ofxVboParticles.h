@@ -11,7 +11,7 @@
 
 class ofxVboParticles {
 public:
-    ofxVboParticles(int maxParticles = 10000, float pointSize = 1000);
+    ofxVboParticles(int maxParticles = 10000, float pointSize = 0.1);
     void update();
     void draw();
     void loadTexture(const string path);
