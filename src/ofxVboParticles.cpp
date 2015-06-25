@@ -49,7 +49,7 @@ void ofxVboParticles::draw(){
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glDepthMask(GL_FALSE);
-    glBlendEquation(GL_FUNC_ADD);
+//    glBlendEquation(GL_FUNC_ADD);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     ofEnablePointSprites();
     
@@ -76,6 +76,23 @@ void ofxVboParticles::loadTexture(const string path)
     ofDisableArbTex();
     texture.loadImage(path);
     ofEnableArbTex();
+}
+
+void ofxVboParticles::clear()
+{
+    positions.clear();
+    velocitys.clear();
+    colors.clear();
+    normals.clear();
+    forces.clear();
+    
+    numParticles = 0;
+    friction = 0.01;
+    
+    billboards.clear();
+    billboards.getVertices().resize(maxParticles);
+    billboards.getColors().resize(maxParticles);
+    billboards.getNormals().resize(maxParticles, ofVec3f(0));
 }
 
 // normals are used for the alpha.
